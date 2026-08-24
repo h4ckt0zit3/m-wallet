@@ -1,0 +1,20 @@
+{
+  "name": "mint-eligibility-checker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Web3 wallet eligibility checker for NFT mints (GTD / FCFS)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test",
+    "seed": "node seed.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ethers": "^6.13.4"
+  }
+}

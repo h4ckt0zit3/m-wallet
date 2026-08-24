@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wallet Eligibility Checker</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%237c6cff'/><path d='M9 17l4 4 10-10' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="dot"></div>
+      <b>Eligibility Checker<span>GTD / FCFS for NFT mints</span></b>
+    </div>
+    <nav id="nav">
+      <a href="#/dashboard"><span class="ic">◈</span> Dashboard</a>
+      <a href="#/wallets"><span class="ic">▤</span> Wallets</a>
+      <a href="#/projects"><span class="ic">◇</span> Projects</a>
+      <a href="#/eligibility"><span class="ic">✓</span> Eligibility</a>
+      <a href="#/settings"><span class="ic">⚙</span> Settings</a>
+    </nav>
+    <footer>
+      Public addresses only.<br>Never asks for keys or signatures.
+    </footer>
+  </aside>
+
+  <main id="view"><div class="empty">Loading…</div></main>
+</div>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<dialog id="modal">
+  <h2 id="modal-title">Details</h2>
+  <div id="modal-body"></div>
+  <div class="row end" style="margin-top:16px"><button onclick="document.getElementById('modal').close()">Close</button></div>
+</dialog>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>

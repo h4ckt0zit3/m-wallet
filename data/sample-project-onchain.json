@@ -1,0 +1,24 @@
+{
+  "name": "Sample Drop (live on-chain rules)",
+  "chain": "ethereum",
+  "contract": "0x0000000000000000000000000000000000000002",
+  "description": "Same shape as the offline sample, but the requirements are read live from Ethereum. Use this to confirm your RPC endpoint works. Wallets that hold nothing will correctly come back NOT ELIGIBLE.",
+  "phases": [
+    {
+      "name": "OG Holders",
+      "rules": [
+        { "type": "nft-holding", "contract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D", "min": 1, "label": "BAYC" }
+      ]
+    },
+    {
+      "name": "FCFS - token holders",
+      "rules": [
+        { "type": "token-holding", "contract": "0x6B175474E89094C44Da98b954EedeAC495271d0F", "min": 100, "label": "DAI" }
+      ]
+    },
+    {
+      "name": "Public",
+      "rules": [{ "type": "open" }]
+    }
+  ]
+}

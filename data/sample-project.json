@@ -1,0 +1,60 @@
+{
+  "name": "Sample Drop (offline demo)",
+  "chain": "ethereum",
+  "contract": "0x0000000000000000000000000000000000000001",
+  "sourceUrl": "https://example.com/mint",
+  "description": "A hand-defined project that exercises every result state without touching the network. Use it to see how the engine reports evidence and, just as importantly, what it refuses to guess.",
+  "phases": [
+    {
+      "name": "OG / Guaranteed",
+      "startTime": "2026-09-01T18:00:00Z",
+      "endTime": "2026-09-01T19:00:00Z",
+      "walletLimit": 2,
+      "rules": [
+        {
+          "type": "allowlist",
+          "label": "OG list",
+          "source": "Project announcement, 18 Aug 2026",
+          "addresses": [
+            "0x1111111111111111111111111111111111111111",
+            "0x3333333333333333333333333333333333333333"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "WL",
+      "startTime": "2026-09-01T19:00:00Z",
+      "endTime": "2026-09-01T20:00:00Z",
+      "walletLimit": 1,
+      "rules": [
+        {
+          "type": "snapshot",
+          "blockNumber": 20500000,
+          "label": "holder snapshot",
+          "source": "Published snapshot CSV",
+          "addresses": [
+            "0x2222222222222222222222222222222222222222",
+            "0x3333333333333333333333333333333333333333"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Community Raffle",
+      "startTime": "2026-09-01T19:30:00Z",
+      "rules": [
+        {
+          "type": "external",
+          "kind": "discord",
+          "detail": "Winners are drawn in the project's Discord and stored in a private bot database. There is no public endpoint listing them."
+        }
+      ]
+    },
+    {
+      "name": "Public",
+      "startTime": "2026-09-01T20:30:00Z",
+      "rules": [{ "type": "open" }]
+    }
+  ]
+}
