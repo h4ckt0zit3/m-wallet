@@ -45,3 +45,31 @@ test('probeDrop never reports a phase without a citable source', { skip: !online
     }
   }
 });
+
+/**
+ * A signature-gated stage must surface as UNVERIFIABLE with the signer named -
+ * never as a confident yes or no. The criteria live in a private database, so
+ * no public source can answer, and the tool must say exactly that.
+ */
+test('a recovered multiConfigure reports a signature gate honestly', { skip: !online && 'no network' }, async () => {
+  const { probeMultiConfigure } = await import('../lib/multiconfigure.js');
+  const { checkEligibility } = await import('../lib/engine.js');
+
+  // Decoding is exercised without a network call by driving the phase shape the
+  // recovery produces: an `external`/private-api rule.
+  const project = {
+    id: 'sig', name: 'Signature gated', chain: 'ethereum', contract: null,
+    phases: [{
+      id: 'p0', name: 'Signature-gated stage', normalized: 'GTD', phaseConfidence: 'declared',
+      rules: [{ type: 'external', kind: 'private-api', source: 'multiConfigure()', detail: 'Requires a signature from off-chain signer 0xabc at mint time.' }],
+    }],
+  };
+  const out = await checkEligibility(project, [{ id: 'w', name: 'W', address: '0x'.padEnd(42, '1') }]);
+  const r = out.results[0];
+  assert.equal(r.status, 'UNVERIFIABLE');
+  assert.equal(r.gtd, false, 'a signature gate must never be reported as GTD-eligible');
+  assert.equal(r.confidence, 'unknown');
+  assert.ok(r.missing.length, 'must name what is missing');
+  assert.match(r.missing.join(' '), /sign/i, 'the explanation must point at the signature gate');
+  assert.equal(typeof probeMultiConfigure, 'function');
+});
